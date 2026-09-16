@@ -1,1 +1,383 @@
-shsbsvsvsvsbsbsbdvdv
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Late Hour — Coffee after dark</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500&display=swap');
+
+  :root{
+    --ink:#151312;
+    --paper:#e9e3d8;
+    --plum:#4a2a3d;
+    --ember:#c85a3f;
+    --line:rgba(21,19,18,0.15);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Space Grotesk', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(21,19,18,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(233,227,216,0.12);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:18px;
+    padding-bottom:18px;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-size:1.2rem;
+    font-weight:700;
+  }
+  nav ul{
+    display:flex;
+    gap:28px;
+    list-style:none;
+    font-size:0.92rem;
+  }
+  nav a{text-decoration:none; opacity:0.85;}
+  nav a:hover{opacity:1;}
+
+  /* HERO */
+  header.hero{
+    padding:110px 0 90px;
+    position:relative;
+    overflow:hidden;
+  }
+  header.hero::before{
+    content:"";
+    position:absolute;
+    top:-30%;
+    right:-15%;
+    width:560px;
+    height:560px;
+    background:radial-gradient(circle, var(--ember) 0%, transparent 70%);
+    opacity:0.35;
+    filter:blur(10px);
+  }
+  .hero-inner{position:relative;}
+  .kicker{
+    font-size:0.95rem;
+    color:var(--ember);
+    margin-bottom:18px;
+  }
+  h1.display{
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    line-height:1.02;
+    max-width:14ch;
+  }
+  .hero-sub{
+    margin-top:26px;
+    max-width:46ch;
+    font-size:1.05rem;
+    color:rgba(233,227,216,0.8);
+  }
+  .hero-cta{
+    margin-top:38px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    padding:13px 26px;
+    border-radius:2px;
+    font-size:0.95rem;
+    text-decoration:none;
+    border:1px solid var(--paper);
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+  .btn.solid{
+    background:var(--paper);
+    color:var(--ink);
+  }
+  .btn.solid:hover{background:var(--ember); border-color:var(--ember); color:var(--paper);}
+  .btn.ghost:hover{background:rgba(233,227,216,0.08);}
+
+  .hours-strip{
+    margin-top:56px;
+    display:flex;
+    gap:36px;
+    flex-wrap:wrap;
+    border-top:1px solid rgba(233,227,216,0.15);
+    padding-top:22px;
+    font-size:0.9rem;
+    color:rgba(233,227,216,0.65);
+  }
+  .hours-strip strong{color:var(--paper); font-weight:500;}
+
+  /* SECTIONS */
+  section{padding:86px 0;}
+  section.alt{background:var(--paper); color:var(--ink);}
+  section.alt h2, section.alt .kicker{color:var(--plum);}
+
+  .section-head{
+    max-width:52ch;
+    margin-bottom:48px;
+  }
+  .section-head h2{font-size:clamp(1.7rem, 3.4vw, 2.4rem);}
+  .section-head p{margin-top:14px; color:rgba(21,19,18,0.65); font-size:1rem;}
+  header.hero + section .section-head p,
+  section:not(.alt) .section-head p{color:rgba(233,227,216,0.7);}
+
+  /* MENU */
+  .menu-list{
+    display:flex;
+    flex-direction:column;
+  }
+  .menu-row{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .menu-row:first-child{border-top:1px solid var(--line);}
+  .menu-name{font-family:'Fraunces', serif; font-size:1.1rem; font-weight:600;}
+  .menu-desc{font-size:0.9rem; color:rgba(21,19,18,0.6); margin-top:4px; max-width:44ch;}
+  .menu-price{font-size:1rem; white-space:nowrap; padding-top:2px;}
+
+  /* NIGHTS */
+  .nights-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:rgba(233,227,216,0.15);
+    border:1px solid rgba(233,227,216,0.15);
+  }
+  .night-card{
+    background:var(--ink);
+    padding:30px 24px;
+  }
+  .night-card .day{color:var(--ember); font-size:0.85rem; margin-bottom:10px;}
+  .night-card h3{font-size:1.2rem; margin-bottom:8px;}
+  .night-card p{font-size:0.9rem; color:rgba(233,227,216,0.65);}
+
+  @media (max-width:680px){
+    .nights-grid{grid-template-columns:1fr;}
+  }
+
+  /* VISIT */
+  .visit-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:60px;
+    align-items:start;
+  }
+  .visit-grid address{
+    font-style:normal;
+    font-size:1rem;
+    line-height:1.9;
+  }
+  .visit-grid address a{text-decoration:underline; text-underline-offset:3px;}
+  .map-box{
+    aspect-ratio:4/3;
+    background:
+      repeating-linear-gradient(0deg, rgba(21,19,18,0.06) 0 1px, transparent 1px 26px),
+      repeating-linear-gradient(90deg, rgba(21,19,18,0.06) 0 1px, transparent 1px 26px),
+      var(--paper);
+    border:1px solid var(--line);
+    position:relative;
+  }
+  .map-box::after{
+    content:"◆";
+    position:absolute;
+    top:44%;
+    left:52%;
+    color:var(--ember);
+    font-size:1.4rem;
+  }
+  @media (max-width:760px){
+    .visit-grid{grid-template-columns:1fr; gap:36px;}
+  }
+
+  footer{
+    border-top:1px solid rgba(233,227,216,0.12);
+    padding:36px 0;
+    font-size:0.85rem;
+    color:rgba(233,227,216,0.5);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Late Hour</div>
+    <ul>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#nights">Nights</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="kicker">A coffee counter that opens when most close</div>
+    <h1 class="display">Coffee, run on the rhythm of the late shift.</h1>
+    <p class="hero-sub">Late Hour pours strong, unhurried coffee from 6pm to 1am — for the ones still working, still talking, still awake. No syrup boards, no rush.</p>
+    <div class="hero-cta">
+      <a class="btn solid" href="#visit">Find us tonight</a>
+      <a class="btn ghost" href="#menu">See the menu</a>
+    </div>
+    <div class="hours-strip">
+      <div><strong>Tue–Sun</strong> · 6pm – 1am</div>
+      <div><strong>Monday</strong> · closed</div>
+      <div><strong>Cash & card</strong> · both fine</div>
+    </div>
+  </div>
+</header>
+
+<section id="menu" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The counter</div>
+      <h2>Six drinks. Made properly.</h2>
+      <p>The list stays short on purpose — everything on it, we've made a thousand times.</p>
+    </div>
+    <div class="menu-list">
+      <div class="menu-row">
+        <div>
+          <div class="menu-name">Double espresso</div>
+          <div class="menu-desc">Our house blend, pulled short and strong.</div>
+        </div>
+        <div class="menu-price">$4</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <div class="menu-name">Cortado</div>
+          <div class="menu-desc">Equal parts espresso and steamed milk, no foam to speak of.</div>
+        </div>
+        <div class="menu-price">$5</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <div class="menu-name">Cold brew, tall</div>
+          <div class="menu-desc">Steeped eighteen hours. Served over one large cube.</div>
+        </div>
+        <div class="menu-price">$5.50</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <div class="menu-name">Night drip</div>
+          <div class="menu-desc">A rotating single-origin, brewed by the cup, always different.</div>
+        </div>
+        <div class="menu-price">$6</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <div class="menu-name">Decaf cortado</div>
+          <div class="menu-desc">For the ones who still want the ritual, not the wire.</div>
+        </div>
+        <div class="menu-price">$5</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <div class="menu-name">Toast, butter & salt</div>
+          <div class="menu-desc">Thick-cut sourdough, the only food we bother making.</div>
+        </div>
+        <div class="menu-price">$4.50</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="nights">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">What's on</div>
+      <h2>The counter changes shape through the week.</h2>
+      <p>Same coffee every night. Different reasons to stay.</p>
+    </div>
+    <div class="nights-grid">
+      <div class="night-card">
+        <div class="day">Tuesday & Wednesday</div>
+        <h3>Quiet counter</h3>
+        <p>No music, low light. Bring your laptop or your book.</p>
+      </div>
+      <div class="night-card">
+        <div class="day">Thursday</div>
+        <h3>Record night</h3>
+        <p>A different regular brings their own vinyl and runs the room.</p>
+      </div>
+      <div class="night-card">
+        <div class="day">Friday & Saturday</div>
+        <h3>Full counter</h3>
+        <p>Busiest nights — seats fill up after 9, standing room after 11.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Find the door</div>
+      <h2>One counter, one street, easy to miss on purpose.</h2>
+    </div>
+    <div class="visit-grid">
+      <address>
+        118 Orchard Alley<br>
+        rear entrance, past the laundromat<br><br>
+        Tue–Sun, 6pm–1am<br>
+        Closed Mondays and city holidays<br><br>
+        <a href="mailto:hello@latehourcoffee.example">hello@latehourcoffee.example</a><br>
+        <a href="tel:+15551234567">(555) 123-4567</a>
+      </address>
+      <div class="map-box" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; width:100%;">
+    <span>© 2026 Late Hour Coffee</span>
+    <span>Open when it matters</span>
+  </div>
+</footer>
+
+</body>
+</html>
+
